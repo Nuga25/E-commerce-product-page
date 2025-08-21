@@ -5,9 +5,9 @@ type Props = {
   isCartOpen: boolean;
   setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
   cartRef: React.RefObject<HTMLDivElement | null>;
-  count: number;
+  cartCount: number;
+  setCartCount: React.Dispatch<React.SetStateAction<number>>;
   selectedImage: string;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const Header = ({
@@ -15,9 +15,9 @@ const Header = ({
   isCartOpen,
   setIsCartOpen,
   cartRef,
-  count,
+  cartCount,
+  setCartCount,
   selectedImage,
-  setCount,
 }: Props) => {
   return (
     <header className="flex gap-10 items-center border-b border-b-[hsl(220,14%,75%)] h-16 px-2 md:px-0 justify-between">
@@ -62,7 +62,7 @@ const Header = ({
             />
           </button>
           <p className="absolute top-0 right-[-5px] bg-[hsl(26,100%,55%)] text-white text-[7px] font-semibold py-[.5px] px-2 rounded-full">
-            {count}
+            {cartCount}
           </p>
         </div>
         <img
@@ -73,9 +73,9 @@ const Header = ({
         {/* cart dropdown */}
         <CartCard
           isCartOpen={isCartOpen}
-          count={count}
+          cartCount={cartCount}
           selectedImage={selectedImage}
-          setCount={setCount}
+          setCartCount={setCartCount}
         />
       </div>
     </header>

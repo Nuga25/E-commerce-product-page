@@ -1,11 +1,16 @@
 type Prop = {
   isCartOpen: boolean;
-  count: number;
+  cartCount: number;
   selectedImage: string;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
+  setCartCount: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const CartCard = ({ isCartOpen, count, selectedImage, setCount }: Prop) => {
+const CartCard = ({
+  isCartOpen,
+  cartCount,
+  selectedImage,
+  setCartCount,
+}: Prop) => {
   return (
     <div>
       {isCartOpen && (
@@ -14,7 +19,7 @@ const CartCard = ({ isCartOpen, count, selectedImage, setCount }: Prop) => {
             Cart
           </p>
           <div className="p-4 min-h-24">
-            {count == 0 ? (
+            {cartCount == 0 ? (
               <p className="text-center text-[hsl(221,9%,64%)] text-[12px] font-semibold">
                 Your cart is empty.
               </p>
@@ -32,10 +37,10 @@ const CartCard = ({ isCartOpen, count, selectedImage, setCount }: Prop) => {
                     </p>
                     <div className="flex gap-2 items-center">
                       <p className="text-[hsl(221,9%,64%)] text-[12px]">
-                        $125.00 x {count}
+                        $125.00 x {cartCount}
                       </p>
                       <span className="font-bold text-[hsl(220,13%,13%)] text-[12px]">
-                        ${125 * count}
+                        ${125 * cartCount}
                       </span>
                     </div>
                   </div>
@@ -43,7 +48,7 @@ const CartCard = ({ isCartOpen, count, selectedImage, setCount }: Prop) => {
                     src="/images/icon-delete.svg"
                     alt="delete icon"
                     className="w-3 h-4 cursor-pointer hover:opacity-70 "
-                    onClick={() => setCount(0)}
+                    onClick={() => setCartCount(0)}
                   />
                 </div>
                 <button className="w-full mt-4 font-bold text-[12px] bg-[hsl(26,100%,55%)] text-[hsl(220,13%,13%)] py-2 rounded-md hover:bg-[hsl(26,100%,55%,0.8)]">

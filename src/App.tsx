@@ -15,6 +15,7 @@ function App() {
   const [selectedImage, setSelectedImage] = useState(images[0]);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const cartRef = useRef<HTMLDivElement | null>(null);
@@ -75,6 +76,14 @@ function App() {
     setSelectedImage(images[prevIndex]);
   };
 
+  const handleAddToCart = () => {
+    // Only add if the selected count is greater than 0
+    if (count > 0) {
+      setCartCount((prevCartCount) => prevCartCount + count);
+      setCount(0); // Reset the quantity picker after adding to cart
+    }
+  };
+
   const openLightbox = () => {
     setIsLightboxOpen(true);
   };
@@ -92,9 +101,9 @@ function App() {
           isCartOpen={isCartOpen}
           setIsCartOpen={setIsCartOpen}
           cartRef={cartRef}
-          count={count}
+          cartCount={cartCount}
+          setCartCount={setCartCount}
           selectedImage={selectedImage}
-          setCount={setCount}
         />
       </header>
 
@@ -181,7 +190,10 @@ function App() {
                   onClick={handleIncrement}
                 />
               </div>
-              <button className="bg-[hsl(26,100%,55%)] flex justify-center items-center gap-2 font-semibold py-3 px-8 rounded-lg hover:bg-[hsl(26,100%,65%)] transition-colors w-full">
+              <button
+                className="bg-[hsl(26,100%,55%)] flex justify-center items-center gap-2 font-semibold py-3 px-8 rounded-lg hover:bg-[hsl(26,100%,65%)] transition-colors w-full"
+                onClick={handleAddToCart}
+              >
                 <img src="/images/icon-cart.svg" alt="cart icon" />
                 Add to cart
               </button>
